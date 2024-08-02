@@ -33,7 +33,7 @@ export class ApiService {
 
         if (tableName === 'post') resolve({ data: table as ApiPost });
 
-        if (tableName === 'users') {
+        if (tableName === 'users' && id) {
           const data = (table as User[]).find((item) => item.id === id);
           return resolve({ data: data });
         }
