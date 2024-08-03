@@ -1,5 +1,5 @@
 import { extractId } from '../common/helpers/api';
-import { DataBase, Post } from '../common/types/api';
+import { DataBase, GetResponse, Post } from '../common/types/api';
 import { ApiPost } from '../common/types/posts';
 import { User } from '../common/types/user';
 import { rawPost } from './data/rawPost';
@@ -20,7 +20,7 @@ export class ApiService {
     return ApiService._instance;
   }
 
-  public get(url: string) {
+  public get(url: string): Promise<GetResponse<ApiPost | User>> {
     return new Promise((resolve, reject) => {
       const { tableName, id } = extractId(url);
 
@@ -31,11 +31,16 @@ export class ApiService {
 
         const table = this.dataBase[tableName as keyof DataBase];
 
-        if (tableName === 'post') resolve({ data: table as ApiPost });
+        if (tableName === 'post') {
+          return resolve({ data: table as ApiPost } as GetResponse<ApiPost>);
+        }
 
         if (tableName === 'users' && id) {
           const data = (table as User[]).find((item) => item.id === id);
-          return resolve({ data: data });
+
+          if (!data) return reject({ error: 'Not found' });
+
+          return resolve({ data: data } as GetResponse<User>);
         }
 
         reject({ error: 'Not found' });
