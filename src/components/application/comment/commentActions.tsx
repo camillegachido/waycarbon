@@ -4,6 +4,7 @@ import Share from '../../../assets/icons/share.svg';
 import Report from '../../../assets/icons/report.svg';
 import { useState } from 'react';
 import { CommentActionsReply } from './commentActionsReply';
+import { componentsTestId } from '../../../common/constants/testid';
 
 interface Props {
   onSave: (text: string) => void;
@@ -19,9 +20,12 @@ export const CommentActions = ({ onSave }: Props) => {
     return <CommentActionsReply onClose={handleClose} onSave={onSave} />;
 
   return (
-    <Actions>
+    <Actions data-testid={componentsTestId.comment.actions}>
       <ActionsGroup>
-        <ActionButton onClick={handleOpen}>
+        <ActionButton
+          onClick={handleOpen}
+          data-testid={componentsTestId.comment.replybutton}
+        >
           <img src={Reply} alt="ícone de responder" />
           <span>Responder</span>
         </ActionButton>
