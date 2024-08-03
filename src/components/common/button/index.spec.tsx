@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { Button } from './';
-import { mockThemeProvider } from '../../common/utils/test';
-import { componentsTestId } from '../../common/constants/testid';
+import { mockThemeProvider } from '../../../common/utils/test';
+import { componentsTestId } from '../../../common/constants/testid';
 
 describe('Button Component', () => {
   it('should render Default button by default', () => {
