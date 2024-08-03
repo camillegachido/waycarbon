@@ -1,17 +1,27 @@
+import { NestedComment } from '../../../common/types/posts';
 import { CommentActions } from './commentActions';
 import { Author, Container, Text } from './index.styled';
 
-export const Comment = () => {
+interface Props {
+  onSave: (id: number, value: string) => void;
+  comment: NestedComment;
+}
+
+export const Comment = ({ onSave, comment }: Props) => {
+  const handleSave = (text: string) => {
+    onSave(comment.id, text);
+  };
+
   return (
     <Container>
-      <Author>Joana Vasconcellos - 20 fev 2019, às 17h30</Author>
-      <Text>
-        O empenho em analisar a consolidação das estruturas oferece uma
-        interessante oportunidade para verificação do retorno esperado a longo
-        prazo. Por outro lado, o julgamento imparcial das eventualidades
-        facilita a criação dos modos de operação convencionais.
-      </Text>
-      <CommentActions />
+      <Author>
+        {comment.author.username} - {comment.timestamp}
+      </Author>
+      <Text>{comment.content}</Text>
+      <CommentActions onSave={handleSave} />
+      {comment.replies.map((reply) => (
+        <Comment onSave={onSave} comment={reply} />
+      ))}
     </Container>
   );
 };

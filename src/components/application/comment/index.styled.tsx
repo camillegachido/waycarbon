@@ -4,6 +4,7 @@ export const Container = styled.article`
   padding-left: 28px;
   border-left: 1px solid ${({ theme }) => theme.secondary.main};
   margin-bottom: 15px;
+  margin-top: 20px;
 `;
 
 export const Author = styled.p`
