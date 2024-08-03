@@ -10,3 +10,7 @@ export interface User extends GenericUser {
   friendIds: number[];
   posts: SimplePost[];
 }
+
+export interface UserWithFriends extends User {
+  friends: GenericUser[];
+}
