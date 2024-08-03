@@ -36,7 +36,21 @@ describe('ApiService', () => {
 
       const result = await apiService.get(`/users/${userId}`);
 
-      expect(result).toEqual({ data: users[0] });
+      expect(result).toEqual({
+        data: {
+          ...users[0],
+          friends: [
+            {
+              id: 2,
+              username: 'Joana Vasconcellos',
+            },
+            {
+              id: 4,
+              username: 'Clara Passos',
+            },
+          ],
+        },
+      });
     });
 
     it('should return an error if table is not found', async () => {
@@ -57,9 +71,9 @@ describe('ApiService', () => {
         id: nonExistentId,
       });
 
-      const result = await apiService.get(`/users/${nonExistentId}`);
-
-      expect(result).toEqual({ data: undefined });
+      await expect(apiService.get(`/users/${nonExistentId}`)).rejects.toEqual({
+        error: 'Not found',
+      });
     });
   });
 
