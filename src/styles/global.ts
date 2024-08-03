@@ -16,12 +16,11 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  body, html {
+  body, html, * {
     margin: 0;
     padding: 0;
+    font-family: "Roboto", sans-serif;
+    color: rgba(0, 0, 0, 1);
   }
 
-  *{
-    font-family: "Roboto", sans-serif;
-  }
 `;

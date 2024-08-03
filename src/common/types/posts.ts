@@ -29,6 +29,7 @@ export interface NestedComment {
   id: number;
   author: GenericUser;
   content: string;
+  timestamp: string;
   replies: NestedComment[];
 }
 
