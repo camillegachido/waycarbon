@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { User } from '.';
-import { mockThemeProvider } from '../../common/utils/test';
+import { mockThemeProvider } from '../../../common/utils/test';
 
 describe('User Component', () => {
   const mockUser = {
