@@ -18,4 +18,7 @@ export const componentsTestId = {
     replybutton: 'comment-reply-button',
     replyText: 'comment-reply-text',
   },
+  loader: {
+    container: 'loader-container',
+  },
 };
