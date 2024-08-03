@@ -10,6 +10,7 @@ const Container = styled.button<Props>`
   border-radius: 8px;
   border: 0px;
   font-weight: bold;
+  height: fit-content;
 
   transition:
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
