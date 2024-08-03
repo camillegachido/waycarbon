@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { Background, Container } from './index.styled';
-import { componentsTestId } from '../../common/constants/testid';
+import { componentsTestId } from '../../../common/constants/testid';
 
 interface Props extends PropsWithChildren {
   isOpen: boolean;
