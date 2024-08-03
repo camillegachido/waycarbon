@@ -1,4 +1,4 @@
-import { ApiComment, NestedComment } from '@/common/types/posts';
+import { ApiComment, NestedComment } from '../../common/types/posts';
 import { ApiService } from '../../services/api';
 
 export class PostCommentUseCase {

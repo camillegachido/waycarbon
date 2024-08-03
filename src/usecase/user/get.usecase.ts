@@ -1,5 +1,5 @@
 import { ApiService } from '../../services/api';
-import { UserWithFriends } from '@/common/types/user';
+import { UserWithFriends } from '../../common/types/user';
 
 export class GetUserUseCase {
   public async execute(id: number): Promise<UserWithFriends> {

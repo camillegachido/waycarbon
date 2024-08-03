@@ -1,8 +1,8 @@
-import { ApiComment } from '@/common/types/posts';
+import { ApiComment } from '../../../common/types/posts';
 import {
   organizePostCommentsAsTree,
   organizeCommentsAsTree,
-} from '@/common/utils/post';
+} from '../../../common/utils/post';
 
 const apiComments: ApiComment[] = [
   {
