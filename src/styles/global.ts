@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
+    color: rgba(0, 0, 0, 1);
   }
 
 `;
