@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 import { Modal } from './';
-import { componentsTestId } from '../../common/constants/testid';
+import { componentsTestId } from '../../../common/constants/testid';
 
 describe('Modal Component', () => {
   it('should not render when isOpen is false', () => {
