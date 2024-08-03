@@ -1,4 +1,4 @@
-import { User as IUser } from '../../common/types/user';
+import { User as IUser } from '../../../common/types/user';
 import { Container, Image, Name, Date } from './index.styled';
 
 interface Props {

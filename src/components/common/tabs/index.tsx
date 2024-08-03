@@ -1,4 +1,4 @@
-import { componentsTestId } from '../../common/constants/testid';
+import { componentsTestId } from '../../../common/constants/testid';
 import { Container, Tab } from './index.styled';
 
 interface Props {

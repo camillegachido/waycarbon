@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { Tabs } from '.';
-import { componentsTestId } from '../../common/constants/testid';
-import { mockThemeProvider } from '../../common/utils/test';
+import { componentsTestId } from '../../../common/constants/testid';
+import { mockThemeProvider } from '../../../common/utils/test';
 
 describe('Tabs Component', () => {
   const tabs = ['Tab1', 'Tab2', 'Tab3'];
