@@ -6,7 +6,15 @@ export interface DataBase {
   users: User[];
 }
 
+export interface GetResponse<T> {
+  data: T;
+}
+
 export interface Post<T> {
   url: string;
   data: T;
+}
+
+export interface Error {
+  error: string;
 }
