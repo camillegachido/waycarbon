@@ -1,5 +1,5 @@
 import { Default, Outlined, Text } from './index.styled';
-import { componentsTestId } from '../../common/constants/testid';
+import { componentsTestId } from '../../../common/constants/testid';
 import { ButtonHTMLAttributes } from 'react';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
