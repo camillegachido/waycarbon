@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { Header } from './';
-import { mockThemeProvider } from '../../common/utils/test';
+import { mockThemeProvider } from '../../../common/utils/test';
 
 describe('Header Component', () => {
   it('should render the Header component with the Logo inside the Layout', () => {
