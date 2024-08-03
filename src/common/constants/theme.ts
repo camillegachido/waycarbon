@@ -16,5 +16,6 @@ export const theme = {
     primary: 'rgba(0, 0, 0, 1)',
     secondary: 'rgba(147, 147, 147, 1)',
     terciary: 'rgba(138, 138, 138, 1)',
+    light: '#E2E2E2',
   },
 };
