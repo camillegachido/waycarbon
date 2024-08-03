@@ -7,4 +7,8 @@ export const componentsTestId = {
     outlined: 'button-outlined',
     text: 'button-text',
   },
+  tabs: {
+    default: 'tab',
+    active: 'active-tab',
+  },
 };
