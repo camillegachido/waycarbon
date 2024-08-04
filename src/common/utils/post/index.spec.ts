@@ -188,7 +188,7 @@ describe('updatePostComments', () => {
   });
 
   test('should not modify comments if parent comment is not found', () => {
-    const parent = 2; // Non-existent parent
+    const parent = 2;
 
     const expected = [...comments];
 
@@ -203,5 +203,57 @@ describe('updatePostComments', () => {
     updatePostComments(comments, parent, newComment);
 
     expect(comments).toEqual(originalComments);
+  });
+
+  test('should reply to replies', () => {
+    const parent = 2;
+
+    const comments = [
+      {
+        id: 1,
+        author: { id: 1, username: 'John' },
+        timestamp: '',
+        content: 'Parent comment',
+        replies: [
+          {
+            id: 2,
+            author: { id: 1, username: 'John' },
+            timestamp: '',
+            content: 'Parent comment',
+            replies: [],
+          },
+        ],
+      },
+    ];
+
+    const newComment = {
+      id: 3,
+      content: 'New nested comment',
+      respondsTo: { id: 3 },
+      author: { id: 2, username: 'Anne' },
+      timestamp: '',
+      replies: [],
+    };
+
+    const expected = [
+      {
+        id: 1,
+        author: { id: 1, username: 'John' },
+        timestamp: '',
+        content: 'Parent comment',
+        replies: [
+          {
+            id: 2,
+            author: { id: 1, username: 'John' },
+            timestamp: '',
+            content: 'Parent comment',
+            replies: [newComment],
+          },
+        ],
+      },
+    ];
+    updatePostComments(comments, parent, newComment);
+
+    expect(comments).toEqual(expected);
   });
 });

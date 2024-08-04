@@ -42,19 +42,38 @@ export const updatePostComments = (
   parent: number,
   newComment: NestedComment
 ): NestedComment[] => {
-  const parentIndex = comments.findIndex((comment) => comment.id === parent);
+  const newComments = [...comments];
 
-  if (parentIndex === -1) return comments;
+  const updateComments = (comments: NestedComment[]): NestedComment[] => {
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
 
-  const clonedComments = [...comments];
-  const parentComment = clonedComments[parentIndex];
+      if (comment.id === parent) {
+        const nestedNewComment: NestedComment = {
+          ...newComment,
+          replies: [],
+        };
 
-  const updatedParentComment = {
-    ...parentComment,
-    replies: [newComment, ...parentComment.replies],
+        const updatedParentComment = {
+          ...comment,
+          replies: [nestedNewComment, ...comment.replies],
+        };
+
+        comments[i] = updatedParentComment;
+
+        return comments;
+      }
+
+      if (!comment.replies) return [];
+
+      const updatedReplies = updateComments(comment.replies);
+      if (updatedReplies !== comment.replies) {
+        comments[i].replies = updatedReplies;
+        return comments;
+      }
+    }
+    return comments;
   };
 
-  clonedComments[parentIndex] = updatedParentComment;
-
-  return clonedComments;
+  return updateComments(newComments);
 };

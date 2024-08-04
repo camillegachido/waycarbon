@@ -8,7 +8,7 @@ export const useComments = (initialComments: NestedComment[]) => {
   const { user } = useContext(AuthContext);
   const [comments, setComments] = useState<NestedComment[]>(initialComments);
 
-  const addComment = (parent: number, comment: string) => {
+  const addComment = async (parent: number, comment: string) => {
     const newComment: ApiComment = {
       author: user,
       timestamp: new Date().toISOString(),
