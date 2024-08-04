@@ -1,4 +1,4 @@
-import { addFriendsToUser } from '../common/utils/user';
+import { addAvatarToUser, addFriendsToUser } from '../common/utils/user';
 import { extractId } from '../common/helpers/api';
 import { DataBase, GetResponse, Post } from '../common/types/api';
 import { ApiPost } from '../common/types/posts';
@@ -9,8 +9,8 @@ import { users } from './data/users';
 export class ApiService {
   private static _instance: ApiService;
   private dataBase: DataBase = {
-    post: rawPost,
-    users: users,
+    post: { ...rawPost, author: addAvatarToUser(rawPost.author) },
+    users: users.map((user) => addAvatarToUser(user)),
   };
 
   public static get instance(): ApiService {

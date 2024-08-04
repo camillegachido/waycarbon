@@ -14,7 +14,7 @@ export const BlogUserModal = ({ visitedUser, onClose }: Props) => {
 
   return (
     <Modal isOpen onClose={onClose}>
-      <User user={visitedUser} time={user?.memberSince ?? ''} />
+      <User user={user ?? visitedUser} time={user?.memberSince ?? ''} />
       <Divider />
       <ButtonSection>
         <FollowSection>
