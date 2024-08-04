@@ -28,7 +28,7 @@ export const BlogPage = () => {
       <Layout>
         <BlogHeader post={post} />
         <BlogContent content={post.content} />
-        <BlogComments comments={post.comments} />
+        <BlogComments initialComments={post.comments} />
       </Layout>
     </article>
   );

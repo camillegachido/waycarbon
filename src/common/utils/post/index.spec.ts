@@ -3,6 +3,7 @@ import {
   organizePostCommentsAsTree,
   organizeCommentsAsTree,
   extractParagraphTexts,
+  updatePostComments,
 } from '../../../common/utils/post';
 
 const apiComments: ApiComment[] = [
@@ -149,5 +150,58 @@ describe('extractParagraphTexts', () => {
 
     const result = extractParagraphTexts(str);
     expect(result).toEqual(expected);
+  });
+});
+
+describe('updatePostComments', () => {
+  const comments = [
+    {
+      id: 1,
+      author: { id: 1, username: 'John' },
+      timestamp: '',
+      content: 'Parent comment',
+      replies: [],
+    },
+  ];
+
+  const newComment = {
+    id: 2,
+    content: 'New nested comment',
+    respondsTo: { id: 1 },
+    author: { id: 2, username: 'Anne' },
+    timestamp: '',
+    replies: [],
+  };
+
+  test('should add a new comment to the replies of the parent comment', () => {
+    const parent = 1;
+
+    const expected = [
+      {
+        ...comments[0],
+        replies: [{ ...newComment, replies: [] }],
+      },
+    ];
+
+    const result = updatePostComments(comments, parent, newComment);
+    expect(result).toEqual(expected);
+  });
+
+  test('should not modify comments if parent comment is not found', () => {
+    const parent = 2; // Non-existent parent
+
+    const expected = [...comments];
+
+    const result = updatePostComments(comments, parent, newComment);
+    expect(result).toEqual(expected);
+  });
+
+  test('should not mutate the original comments array', () => {
+    const parent = 1;
+
+    const originalComments = [...comments];
+    updatePostComments(comments, parent, newComment);
+
+    expect(comments).toEqual(originalComments);
   });
 });

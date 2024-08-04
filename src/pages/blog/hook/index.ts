@@ -1,2 +1,3 @@
 import { usePost } from './usePost';
-export { usePost };
+import { useComments } from './useComments';
+export { usePost, useComments };

@@ -36,3 +36,25 @@ export const extractParagraphTexts = (content: string) => {
   if (!matches) return [];
   return matches.map((tag) => tag.replace(/<\/?p>/g, ''));
 };
+
+export const updatePostComments = (
+  comments: NestedComment[],
+  parent: number,
+  newComment: NestedComment
+): NestedComment[] => {
+  const parentIndex = comments.findIndex((comment) => comment.id === parent);
+
+  if (parentIndex === -1) return comments;
+
+  const clonedComments = [...comments];
+  const parentComment = clonedComments[parentIndex];
+
+  const updatedParentComment = {
+    ...parentComment,
+    replies: [newComment, ...parentComment.replies],
+  };
+
+  clonedComments[parentIndex] = updatedParentComment;
+
+  return clonedComments;
+};
