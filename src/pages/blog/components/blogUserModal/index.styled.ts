@@ -21,4 +21,6 @@ export const FollowSection = styled.div`
 
 export const TabContainer = styled.div`
   padding: 0px 20px;
+  max-height: 60vh;
+  overflow: auto;
 `;

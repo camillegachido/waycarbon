@@ -4,6 +4,7 @@ import { Post } from '../../../../components/application/post';
 import { Tabs, Loader } from '../../../../components';
 import { Friend } from '../../../../components/application/friend';
 import { TabContainer } from './index.styled';
+import { pagesTestId } from '../../../../common/constants/testid';
 
 const tabs = ['Posts', 'Amigos em comum'];
 
@@ -23,16 +24,23 @@ export const Content = ({ user }: Props) => {
   return (
     <>
       <Tabs tabs={tabs} value={selectedTab} onChange={onTabChange} />
-      <TabContainer>
-        {selectedTab === tabs[0] &&
-          user.posts.map((post) => (
-            <Post key={'post-' + post.id} post={post} />
-          ))}
-        {selectedTab === tabs[1] &&
-          user.friends.map((friend) => (
-            <Friend key={'friend-' + friend.id} user={friend} />
-          ))}
-      </TabContainer>
+      {selectedTab === tabs[0] && (
+        <TabContainer data-testid={pagesTestId.blog.tabPosts}>
+          {selectedTab === tabs[0] &&
+            user.posts.map((post) => (
+              <Post key={'post-' + post.id} post={post} />
+            ))}
+        </TabContainer>
+      )}
+
+      {selectedTab === tabs[1] && (
+        <TabContainer data-testid={pagesTestId.blog.tabFriends}>
+          {selectedTab === tabs[1] &&
+            user.friends.map((friend) => (
+              <Friend key={'friend-' + friend.id} user={friend} />
+            ))}
+        </TabContainer>
+      )}
     </>
   );
 };
