@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { MouseEvent, PropsWithChildren } from 'react';
 import { Background, Container } from './index.styled';
 import { componentsTestId } from '../../../common/constants/testid';
 
@@ -8,6 +8,10 @@ interface Props extends PropsWithChildren {
 }
 
 export const Modal = ({ isOpen, onClose, children }: Props) => {
+  const handleContainerClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   if (!isOpen) return <></>;
 
   return (
@@ -15,7 +19,7 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
       onClick={onClose}
       data-testid={componentsTestId.modal.background}
     >
-      <Container>{children}</Container>
+      <Container onClick={handleContainerClick}>{children}</Container>
     </Background>
   );
 };

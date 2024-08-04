@@ -11,6 +11,10 @@ export const Author = styled.p`
   font-size: 16px;
   color: ${({ theme }) => theme.primary.dark};
   line-height: 40px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Text = styled.p`
