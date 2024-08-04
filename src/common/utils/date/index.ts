@@ -3,7 +3,10 @@ import { ptBR } from 'date-fns/locale';
 import { toZonedTime } from 'date-fns-tz';
 
 export const formatDate = (isoString: string) => {
+  if (isoString.length === 0) return '';
+
   const date = parseISO(isoString);
+
   const formattedDate = format(date, 'd MMM, yyyy', { locale: ptBR });
   return formattedDate;
 };
