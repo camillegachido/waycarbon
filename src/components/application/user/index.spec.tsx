@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { User } from '.';
 import { mockThemeProvider } from '../../../common/utils/test';
 import { formatDate } from '../../../common/utils';
@@ -22,5 +22,17 @@ describe('User Component', () => {
     expect(getByText(formatDate(time))).toBeInTheDocument();
 
     expect(getByAltText(mockUser.username + ' avatar')).toBeInTheDocument();
+  });
+
+  it('should handle click event when onClick is provided', () => {
+    const handleClick = jest.fn();
+    const { getByText } = render(
+      mockThemeProvider(
+        <User user={mockUser} time={time} onClick={handleClick} />
+      )
+    );
+
+    fireEvent.click(getByText(mockUser.username));
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
