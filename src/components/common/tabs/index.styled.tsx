@@ -20,4 +20,8 @@ export const Tab = styled.button<TabProps>`
 
   ${({ theme, isActive }) =>
     isActive && `border-bottom: 1px solid ${theme.primary.main}`};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

@@ -26,6 +26,18 @@ const Container = styled.button<Props>`
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  & .loader {
+    height: 12px;
+    width: 12px;
+  }
+
+  & .loader div {
+    border-width: 1px;
+    margin: 0px;
+    width: 12px;
+    height: 12px;
+  }
 `;
 
 export const Default = styled(Container)`
@@ -34,6 +46,10 @@ export const Default = styled(Container)`
 
   &:hover {
     background-color: ${({ theme, color = 'primary' }) => theme[color].dark};
+  }
+
+  & .loader div {
+    border-color: white transparent transparent transparent;
   }
 `;
 

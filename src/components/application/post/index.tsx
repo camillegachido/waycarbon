@@ -6,11 +6,13 @@ interface Props {
 }
 
 export const Post = ({ post }: Props) => {
+  const content = post.content.replace(/<[^>]*>?/gm, '').substring(0, 180);
+
   return (
     <Container>
       <Title>{post.title}</Title>
       <Subtitle>{post.subtitle}</Subtitle>
-      <Text>{post.content}</Text>
+      <Text>{content}</Text>
       <ReadMore href="/">Ler mais</ReadMore>
     </Container>
   );
