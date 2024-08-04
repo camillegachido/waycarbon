@@ -1,4 +1,4 @@
-import { GenericUser } from './user';
+import { ApiGenericUser, GenericUser } from './user';
 
 export interface SimplePost {
   id: number;
@@ -7,10 +7,10 @@ export interface SimplePost {
   content: string;
 }
 
-export interface DetailedPost<T> extends SimplePost {
+export interface DetailedPost<CommentType, AuthorType> extends SimplePost {
   timestamp: string;
-  author: GenericUser;
-  comments: T[];
+  author: AuthorType;
+  comments: CommentType[];
 }
 
 export interface CommentReference {
@@ -20,7 +20,7 @@ export interface CommentReference {
 export interface ApiComment {
   id: number;
   respondsTo: CommentReference | null;
-  author: GenericUser;
+  author: ApiGenericUser;
   timestamp: string;
   content: string;
 }
@@ -33,5 +33,5 @@ export interface NestedComment {
   replies: NestedComment[];
 }
 
-export type ApiPost = DetailedPost<ApiComment>;
-export type NestedPost = DetailedPost<NestedComment>;
+export type ApiPost = DetailedPost<ApiComment, ApiGenericUser>;
+export type NestedPost = DetailedPost<NestedComment, GenericUser>;
