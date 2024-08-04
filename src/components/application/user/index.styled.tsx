@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface Props {
+  isClickable: boolean;
+}
+export const Container = styled.div<Props>`
   display: flex;
   gap: 10px;
   align-items: center;
+
+  ${({ isClickable }) =>
+    isClickable &&
+    `
+  &:hover{
+    cursor: pointer;}`}
 `;
 
 export const Image = styled.img`

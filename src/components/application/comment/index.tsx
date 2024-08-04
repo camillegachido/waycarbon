@@ -6,16 +6,17 @@ import { Author, Container, Text } from './index.styled';
 interface Props {
   onSave: (id: number, text: string) => Promise<void>;
   comment: NestedComment;
+  onClick?: () => void;
 }
 
-export const Comment = ({ onSave, comment }: Props) => {
+export const Comment = ({ onSave, comment, onClick }: Props) => {
   const handleSave = async (text: string) => {
     await onSave(comment.id, text);
   };
 
   return (
     <Container data-testid={componentsTestId.comment.container}>
-      <Author>
+      <Author onClick={onClick}>
         {comment.author.username} - {comment.timestamp}
       </Author>
       <Text>{comment.content}</Text>
