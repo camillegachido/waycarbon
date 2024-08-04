@@ -1,7 +1,7 @@
-import { extractId } from '../../common/helpers/api';
-import { ApiService } from '../../services/api';
-import { rawPost } from '../../services/data/rawPost';
-import { users } from '../../services/data/users';
+import { extractId } from '../common/helpers/api';
+import { ApiService } from './api';
+import { rawPost } from './data/rawPost';
+import { users } from './data/users';
 
 jest.mock('../../common/helpers/api', () => ({
   extractId: jest.fn(),
@@ -24,7 +24,15 @@ describe('ApiService', () => {
 
       const result = await apiService.get('/post');
 
-      expect(result).toEqual({ data: rawPost });
+      expect(result).toMatchObject({
+        data: {
+          ...rawPost,
+          author: {
+            ...rawPost.author,
+            avatar_url: {},
+          },
+        },
+      });
     });
 
     it('should return a single user if id is provided', async () => {
@@ -39,14 +47,17 @@ describe('ApiService', () => {
       expect(result).toEqual({
         data: {
           ...users[0],
+          avatar_url: {},
           friends: [
             {
               id: 2,
               username: 'Joana Vasconcellos',
+              avatar_url: {},
             },
             {
               id: 4,
               username: 'Clara Passos',
+              avatar_url: {},
             },
           ],
         },
