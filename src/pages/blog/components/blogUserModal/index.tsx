@@ -1,20 +1,21 @@
-import { GenericUser } from '../../../../common/types/user';
+import { ApiGenericUser } from '../../../../common/types/user';
 import { Button, Modal, User } from '../../../../components';
 import { ButtonSection, Divider, FollowSection } from './index.styled';
 import { useVisitedUser } from '../../hook/useVisitedUser';
 import { Content } from './content';
 
 interface Props {
-  visitedUser: GenericUser;
+  visitedUser: ApiGenericUser;
   onClose: () => void;
 }
 
 export const BlogUserModal = ({ visitedUser, onClose }: Props) => {
   const { user, isFollowed } = useVisitedUser(visitedUser.id);
 
+  const userUrl = user ?? { ...visitedUser, avatar_url: '' };
   return (
     <Modal isOpen onClose={onClose}>
-      <User user={user ?? visitedUser} time={user?.memberSince ?? ''} />
+      <User user={userUrl} time={user?.memberSince ?? ''} />
       <Divider />
       <ButtonSection>
         <FollowSection>

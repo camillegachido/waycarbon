@@ -7,13 +7,13 @@ import { mockThemeProvider } from '../../../common/utils/test';
 describe('Comment Component', () => {
   const mockComment: NestedComment = {
     id: 1,
-    author: { id: 1, username: 'user1', avatar_url: '' },
+    author: { id: 1, username: 'user1' },
     content: 'This is a comment',
     timestamp: '2024-08-02T14:00',
     replies: [
       {
         id: 2,
-        author: { id: 2, username: 'user2', avatar_url: '' },
+        author: { id: 2, username: 'user2' },
         content: 'This is a reply',
         timestamp: '2024-08-02T15:00',
         replies: [],

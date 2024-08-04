@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { NestedPost } from '../../../common/types/posts';
 import { GetPostUseCase } from '../../../usecase';
-import { GenericUser } from '../../../common/types/user';
+import { ApiGenericUser } from '../../../common/types/user';
 
 export const usePost = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState<NestedPost | null>(null);
-  const [selectedUser, setSelectedUser] = useState<GenericUser | null>(null);
+  const [selectedUser, setSelectedUser] = useState<ApiGenericUser | null>(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -20,7 +20,7 @@ export const usePost = () => {
       });
   }, []);
 
-  const onAuthorClick = (author: GenericUser) => {
+  const onAuthorClick = (author: ApiGenericUser) => {
     setSelectedUser(author);
   };
 

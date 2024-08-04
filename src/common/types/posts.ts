@@ -27,7 +27,7 @@ export interface ApiComment {
 
 export interface NestedComment {
   id: number;
-  author: GenericUser;
+  author: ApiGenericUser;
   content: string;
   timestamp: string;
   replies: NestedComment[];
