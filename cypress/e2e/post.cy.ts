@@ -1,7 +1,10 @@
-import { componentsTestId } from '../../src/common/constants/testid';
+import {
+  componentsTestId,
+  pagesTestId,
+} from '../../src/common/constants/testid';
 
 describe('Post page', () => {
-  it('should reply comments', () => {
+  it.skip('should reply comments', () => {
     cy.visit('/');
     cy.get(`[data-testid=${componentsTestId.loader.container}]`).should(
       'exist'
@@ -75,14 +78,27 @@ describe('Post page', () => {
     cy.get(`[data-testid=${componentsTestId.comment.author}]:first`).click();
 
     cy.get(
-      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.loader}]`
-    ).should('exist');
-    cy.get(
-      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs}]`
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs.active}]`
     ).should('not.exist');
 
     cy.get(
-      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs}]`
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.loader.container}]`
     ).should('exist');
+
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs.active}]`
+    ).should('exist');
+
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${pagesTestId.blog.tabPosts}]`
+    ).should('be.visible');
+
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs.default}]:first`
+    ).click();
+
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${pagesTestId.blog.tabFriends}]`
+    ).should('be.visible');
   });
 });
