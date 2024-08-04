@@ -14,7 +14,8 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.h2`
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 28px;
   color: ${({ theme }) => theme.text.secondary};
+  margin-bottom: 14px;
 `;
