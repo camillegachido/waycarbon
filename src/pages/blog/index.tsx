@@ -1,6 +1,6 @@
 import { Layout } from '../../components';
 import { Loader } from '../../components/common/loader';
-import { BlogBanner, BlogHeader } from './components';
+import { BlogBanner, BlogContent, BlogHeader } from './components';
 import { usePost } from './hook';
 import { CenterLoader } from './index.styled';
 
@@ -22,6 +22,7 @@ export const BlogPage = () => {
       <BlogBanner />
       <Layout>
         <BlogHeader post={post} />
+        <BlogContent content={post.content} />
       </Layout>
     </article>
   );
