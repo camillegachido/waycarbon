@@ -4,7 +4,7 @@ import {
 } from '../../src/common/constants/testid';
 
 describe('Post page', () => {
-  it.skip('should reply comments', () => {
+  it('should reply comments', () => {
     cy.visit('/');
     cy.get(`[data-testid=${componentsTestId.loader.container}]`).should(
       'exist'
