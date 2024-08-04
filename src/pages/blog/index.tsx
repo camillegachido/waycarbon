@@ -1,6 +1,11 @@
 import { Layout } from '../../components';
 import { Loader } from '../../components/common/loader';
-import { BlogBanner, BlogContent, BlogHeader } from './components';
+import {
+  BlogBanner,
+  BlogComments,
+  BlogContent,
+  BlogHeader,
+} from './components';
 import { usePost } from './hook';
 import { CenterLoader } from './index.styled';
 
@@ -23,6 +28,7 @@ export const BlogPage = () => {
       <Layout>
         <BlogHeader post={post} />
         <BlogContent content={post.content} />
+        <BlogComments initialComments={post.comments} />
       </Layout>
     </article>
   );

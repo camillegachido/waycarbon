@@ -7,7 +7,7 @@ import { CommentActionsReply } from './commentActionsReply';
 import { componentsTestId } from '../../../common/constants/testid';
 
 interface Props {
-  onSave: (text: string) => void;
+  onSave: (text: string) => Promise<void>;
 }
 
 export const CommentActions = ({ onSave }: Props) => {

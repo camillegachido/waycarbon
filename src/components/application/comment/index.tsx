@@ -4,13 +4,13 @@ import { CommentActions } from './commentActions';
 import { Author, Container, Text } from './index.styled';
 
 interface Props {
-  onSave: (id: number, value: string) => void;
+  onSave: (id: number, text: string) => Promise<void>;
   comment: NestedComment;
 }
 
 export const Comment = ({ onSave, comment }: Props) => {
-  const handleSave = (text: string) => {
-    onSave(comment.id, text);
+  const handleSave = async (text: string) => {
+    await onSave(comment.id, text);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { fireEvent, render, within } from '@testing-library/react';
+import { fireEvent, render, waitFor, within } from '@testing-library/react';
 import { NestedComment } from '../../../common/types/posts';
 import { Comment } from './';
 import { componentsTestId } from '../../../common/constants/testid';
@@ -82,7 +82,9 @@ describe('Comment Component', () => {
     expect(replySection).toBeNull();
   });
 
-  test('calls onSave with the correct arguments when replying', () => {
+  test('calls onSave with the correct arguments when replying', async () => {
+    const mockOnSave = jest.fn(() => Promise.resolve());
+
     const { queryByTestId, getAllByTestId, getByTestId } = render(
       mockThemeProvider(<Comment onSave={mockOnSave} comment={mockComment} />)
     );
@@ -106,6 +108,9 @@ describe('Comment Component', () => {
     expect(saveButton).not.toBeDisabled();
     fireEvent.click(saveButton);
 
-    expect(mockOnSave).toHaveBeenCalledWith(1, 'Test reply');
+    await waitFor(() =>
+      expect(mockOnSave).toHaveBeenCalledWith(1, 'Test reply')
+    );
+    await waitFor(() => expect(replySection).not.toBeInTheDocument());
   });
 });
