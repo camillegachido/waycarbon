@@ -1,4 +1,5 @@
 import { GenericUser } from '../../../common/types/user';
+import { formatDate } from '../../../common/utils';
 import { Container, Image, Name, Date } from './index.styled';
 
 interface Props {
@@ -15,7 +16,7 @@ export const User = ({ user, time, onClick }: Props) => {
       <Image src={user.avatar_url} alt={user.username + ' avatar'} />
       <div>
         <Name>{user.username}</Name>
-        <Date>{time}</Date>
+        <Date>{formatDate(time)}</Date>
       </div>
     </Container>
   );

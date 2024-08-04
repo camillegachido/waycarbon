@@ -1,6 +1,7 @@
 import { componentsTestId } from '../../../common/constants/testid';
 import { NestedComment } from '../../../common/types/posts';
 import { GenericUser } from '../../../common/types/user';
+import { formatDateAndHour } from '../../../common/utils';
 import { CommentActions } from './commentActions';
 import { Author, Container, Text } from './index.styled';
 
@@ -25,7 +26,7 @@ export const Comment = ({ onSave, comment, onClick }: Props) => {
         onClick={() => handleAuthorClick(comment.author)}
         data-testid={componentsTestId.comment.author}
       >
-        {comment.author.username} - {comment.timestamp}
+        {comment.author.username} - {formatDateAndHour(comment.timestamp)}
       </Author>
       <Text>{comment.content}</Text>
       <CommentActions onSave={handleSave} />
