@@ -12,15 +12,17 @@ export const addFriendsToUser = (
 ): UserWithFriends => {
   const friends = users
     .filter((u) => user.friendIds.includes(u.id))
-    .map((u) => ({ id: u.id, username: u.username })) as GenericUser[];
+    .map((u) => addAvatarToUser(u) as GenericUser);
 
   return { ...user, friends };
 };
 
-export const addAvatarToUser = <T extends ApiGenericUser>(user: T) => {
+export const addAvatarToUser = <T extends ApiGenericUser>(
+  user: T
+): T & { avatar_url: string } => {
   const avatar_url = avatarUrls[user.id.toString()];
   if (!avatarUrls) {
-    return avatarUrls['1'];
+    return { ...user, avatar_url: avatarUrls['1'] };
   }
 
   return { ...user, avatar_url };

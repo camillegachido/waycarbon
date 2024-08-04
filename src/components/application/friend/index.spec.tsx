@@ -9,6 +9,7 @@ describe('Friend Component', () => {
     friendIds: [],
     posts: [],
     id: 1,
+    avatar_url: '',
   };
 
   it('should render the user avatar with correct alt text', () => {

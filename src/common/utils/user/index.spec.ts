@@ -9,6 +9,7 @@ describe('addFriendsToUser', () => {
       memberSince: '2014-05-03T16:12Z',
       friendIds: [2, 4],
       posts: [],
+      avatar_url: '',
     },
     {
       id: 2,
@@ -16,6 +17,7 @@ describe('addFriendsToUser', () => {
       memberSince: '2015-05-02T11:32Z',
       friendIds: [1],
       posts: [],
+      avatar_url: '',
     },
     {
       id: 3,
@@ -23,6 +25,7 @@ describe('addFriendsToUser', () => {
       memberSince: '2016-01-15T08:20Z',
       friendIds: [],
       posts: [],
+      avatar_url: '',
     },
     {
       id: 4,
@@ -30,6 +33,7 @@ describe('addFriendsToUser', () => {
       memberSince: '2017-08-21T14:52Z',
       friendIds: [1],
       posts: [],
+      avatar_url: '',
     },
   ];
 
@@ -38,8 +42,8 @@ describe('addFriendsToUser', () => {
     const expectedUserWithFriends: UserWithFriends = {
       ...user,
       friends: [
-        { id: 2, username: 'Joana Vasconcellos' },
-        { id: 4, username: 'Clara Passos' },
+        { id: 2, username: 'Joana Vasconcellos', avatar_url: '' },
+        { id: 4, username: 'Clara Passos', avatar_url: '' },
       ],
     };
 
