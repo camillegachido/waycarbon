@@ -1,67 +1,69 @@
-import { User, UserWithFriends } from '../../../common/types/user';
+import { GenericUser, User, UserWithFriends } from '../../../common/types/user';
 import { addFriendsToUser } from '../../../common/utils/user';
 
 describe('addFriendsToUser', () => {
   const users: User[] = [
     {
       id: 1,
-      username: 'João Figueiredo',
-      memberSince: '2014-05-03T16:12Z',
-      friendIds: [2, 4],
+      username: 'user1',
+      avatar_url: 'src/assets/images/avatar1.jpg',
+      memberSince: '2021-01-01',
+      friendIds: [2, 3],
       posts: [],
-      avatar_url: '',
     },
     {
       id: 2,
-      username: 'Joana Vasconcellos',
-      memberSince: '2015-05-02T11:32Z',
+      username: 'user2',
+      avatar_url: 'src/assets/images/avatar2.jpg',
+      memberSince: '2021-02-01',
       friendIds: [1],
       posts: [],
-      avatar_url: '',
     },
     {
       id: 3,
-      username: 'Arthur Silveira',
-      memberSince: '2016-01-15T08:20Z',
-      friendIds: [],
+      username: 'user3',
+      avatar_url: 'src/assets/images/avatar3.jpg',
+      memberSince: '2021-03-01',
+      friendIds: [1],
       posts: [],
-      avatar_url: '',
     },
     {
       id: 4,
-      username: 'Clara Passos',
-      memberSince: '2017-08-21T14:52Z',
-      friendIds: [1],
+      username: 'user4',
+      avatar_url: 'src/assets/images/avatar4.jpg',
+      memberSince: '2021-04-01',
+      friendIds: [],
       posts: [],
-      avatar_url: '',
     },
   ];
 
   it('should add friends to the user', () => {
     const user: User = users[0];
-    const expectedUserWithFriends: UserWithFriends = {
-      ...user,
-      friends: [
-        { id: 2, username: 'Joana Vasconcellos', avatar_url: '' },
-        { id: 4, username: 'Clara Passos', avatar_url: '' },
-      ],
-    };
+    const expectedFriends = [
+      {
+        id: 2,
+        username: 'user2',
+        avatar_url: {},
+      },
+      {
+        id: 3,
+        username: 'user3',
+        avatar_url: {},
+      },
+    ];
 
     const result = addFriendsToUser(users, user);
 
-    expect(result).toEqual(expectedUserWithFriends);
+    expect(result.friends).toEqual(expectedFriends);
   });
 
   it('should handle a user with no friends', () => {
-    const user: User = users[2];
-    const expectedUserWithFriends: UserWithFriends = {
-      ...user,
-      friends: [],
-    };
+    const user: User = users[3];
+    const expectedFriends: GenericUser[] = [];
 
     const result = addFriendsToUser(users, user);
 
-    expect(result).toEqual(expectedUserWithFriends);
+    expect(result.friends).toEqual(expectedFriends);
   });
 
   it('should handle a user with friends that do not exist in the list', () => {
