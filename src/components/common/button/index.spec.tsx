@@ -33,4 +33,11 @@ describe('Button Component', () => {
       'padding: 8px 16px'
     );
   });
+
+  it('should apply loading prop correctly', () => {
+    const { getByTestId } = render(
+      mockThemeProvider(<Button isLoading>Click me</Button>)
+    );
+    expect(getByTestId(componentsTestId.loader.container)).toBeInTheDocument();
+  });
 });
