@@ -1,12 +1,13 @@
 import { componentsTestId } from '../../../common/constants/testid';
 import { NestedComment } from '../../../common/types/posts';
+import { GenericUser } from '../../../common/types/user';
 import { CommentActions } from './commentActions';
 import { Author, Container, Text } from './index.styled';
 
 interface Props {
   onSave: (id: number, text: string) => Promise<void>;
   comment: NestedComment;
-  onClick?: () => void;
+  onClick: (author: GenericUser) => void;
 }
 
 export const Comment = ({ onSave, comment, onClick }: Props) => {
@@ -16,13 +17,18 @@ export const Comment = ({ onSave, comment, onClick }: Props) => {
 
   return (
     <Container data-testid={componentsTestId.comment.container}>
-      <Author onClick={onClick}>
+      <Author onClick={() => onClick(comment.author)}>
         {comment.author.username} - {comment.timestamp}
       </Author>
       <Text>{comment.content}</Text>
       <CommentActions onSave={handleSave} />
       {comment.replies.map((reply) => (
-        <Comment onSave={onSave} comment={reply} key={`replied-${reply.id}`} />
+        <Comment
+          onSave={onSave}
+          comment={reply}
+          key={`replied-${reply.id}`}
+          onClick={() => onClick(reply.author)}
+        />
       ))}
     </Container>
   );
