@@ -27,3 +27,12 @@ export const organizePostCommentsAsTree = (post: ApiPost) => {
   const comments = organizeCommentsAsTree(post.comments);
   return { ...post, comments } as NestedPost;
 };
+
+export const extractParagraphTexts = (content: string) => {
+  const regex = /<p>(.*?)<\/p>/g;
+
+  const matches = content.match(regex);
+
+  if (!matches) return [];
+  return matches.map((tag) => tag.replace(/<\/?p>/g, ''));
+};
