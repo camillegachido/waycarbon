@@ -6,7 +6,7 @@ export interface AuthContext {
   user: User;
 }
 
-const loggedUser = users[0];
+const loggedUser = { ...users[0], avatar_url: '' };
 
 export const AuthContext = createContext<AuthContext>({
   user: loggedUser,

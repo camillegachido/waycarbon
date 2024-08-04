@@ -1,6 +1,6 @@
 import { componentsTestId } from '../../../common/constants/testid';
 import { NestedComment } from '../../../common/types/posts';
-import { GenericUser } from '../../../common/types/user';
+import { ApiGenericUser } from '../../../common/types/user';
 import { formatDateAndHour } from '../../../common/utils';
 import { CommentActions } from './commentActions';
 import { Author, Container, Text } from './index.styled';
@@ -8,7 +8,7 @@ import { Author, Container, Text } from './index.styled';
 interface Props {
   onSave: (id: number, text: string) => Promise<void>;
   comment: NestedComment;
-  onClick: (author: GenericUser) => void;
+  onClick: (author: ApiGenericUser) => void;
 }
 
 export const Comment = ({ onSave, comment, onClick }: Props) => {
@@ -16,7 +16,7 @@ export const Comment = ({ onSave, comment, onClick }: Props) => {
     await onSave(comment.id, text);
   };
 
-  const handleAuthorClick = (author: GenericUser) => {
+  const handleAuthorClick = (author: ApiGenericUser) => {
     onClick(author);
   };
 

@@ -25,10 +25,12 @@ describe('Comment Component', () => {
 
   test('renders the comment with author, timestamp, content, and replies', () => {
     const { getByText, getAllByTestId } = render(
-      mockThemeProvider(<Comment onSave={mockOnSave} comment={mockComment} />)
+      mockThemeProvider(
+        <Comment onSave={mockOnSave} comment={mockComment} onClick={() => {}} />
+      )
     );
 
-    const authorElement = getByText(/user1 - 2024-08-02T14:00/i);
+    const authorElement = getByText(/user1 - 2 ago 2024, às 17h00/i);
     expect(authorElement).toBeInTheDocument();
 
     const contentElement = getByText(/this is a comment/i);
@@ -37,7 +39,7 @@ describe('Comment Component', () => {
     const commentActions = getAllByTestId(componentsTestId.comment.actions);
     expect(commentActions).toHaveLength(2);
 
-    const replyAuthorElement = getByText(/user2 - 2024-08-02T15:00/i);
+    const replyAuthorElement = getByText(/user2 - 2 ago 2024, às 18h00/i);
     expect(replyAuthorElement).toBeInTheDocument();
     const replyContentElement = getByText(/this is a reply/i);
     expect(replyContentElement).toBeInTheDocument();
@@ -45,7 +47,9 @@ describe('Comment Component', () => {
 
   test('show reply on reply button click', () => {
     const { getAllByTestId, queryByTestId, getByTestId } = render(
-      mockThemeProvider(<Comment onSave={mockOnSave} comment={mockComment} />)
+      mockThemeProvider(
+        <Comment onSave={mockOnSave} comment={mockComment} onClick={() => {}} />
+      )
     );
 
     let replySection = queryByTestId(componentsTestId.comment.reply);
@@ -63,7 +67,9 @@ describe('Comment Component', () => {
 
   test('hide reply on cancel button click', () => {
     const { getAllByTestId, queryByTestId, getByTestId } = render(
-      mockThemeProvider(<Comment onSave={mockOnSave} comment={mockComment} />)
+      mockThemeProvider(
+        <Comment onSave={mockOnSave} comment={mockComment} onClick={() => {}} />
+      )
     );
 
     let replySection = queryByTestId(componentsTestId.comment.reply);
@@ -86,7 +92,9 @@ describe('Comment Component', () => {
     const mockOnSave = jest.fn(() => Promise.resolve());
 
     const { queryByTestId, getAllByTestId, getByTestId } = render(
-      mockThemeProvider(<Comment onSave={mockOnSave} comment={mockComment} />)
+      mockThemeProvider(
+        <Comment onSave={mockOnSave} comment={mockComment} onClick={() => {}} />
+      )
     );
 
     let replySection = queryByTestId(componentsTestId.comment.reply);
