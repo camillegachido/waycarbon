@@ -1,13 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { Header, Layout } from '../components';
+import { Header } from '../components';
 
 export const BlogLayout = () => {
   return (
     <main>
       <Header />
-      <Layout>
-        <Outlet />
-      </Layout>
+      <Outlet />
     </main>
   );
 };
