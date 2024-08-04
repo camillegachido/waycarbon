@@ -3,7 +3,7 @@ import { ApiService } from './api';
 import { rawPost } from './data/rawPost';
 import { users } from './data/users';
 
-jest.mock('../../common/helpers/api', () => ({
+jest.mock('../common/helpers/api', () => ({
   extractId: jest.fn(),
 }));
 
