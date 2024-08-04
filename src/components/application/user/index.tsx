@@ -11,7 +11,7 @@ export const User = ({ user, time, onClick }: Props) => {
   const isClickable = !!onClick;
 
   return (
-    <Container isClickable={isClickable}>
+    <Container isClickable={isClickable} onClick={onClick}>
       <Image src="" alt={user.username + ' avatar'} />
       <div>
         <Name>{user.username}</Name>
