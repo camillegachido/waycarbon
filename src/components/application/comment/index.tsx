@@ -15,9 +15,13 @@ export const Comment = ({ onSave, comment, onClick }: Props) => {
     await onSave(comment.id, text);
   };
 
+  const handleAuthorClick = (author: GenericUser) => {
+    onClick(author);
+  };
+
   return (
     <Container data-testid={componentsTestId.comment.container}>
-      <Author onClick={() => onClick(comment.author)}>
+      <Author onClick={() => handleAuthorClick(comment.author)}>
         {comment.author.username} - {comment.timestamp}
       </Author>
       <Text>{comment.content}</Text>
@@ -27,7 +31,7 @@ export const Comment = ({ onSave, comment, onClick }: Props) => {
           onSave={onSave}
           comment={reply}
           key={`replied-${reply.id}`}
-          onClick={() => onClick(reply.author)}
+          onClick={onClick}
         />
       ))}
     </Container>
