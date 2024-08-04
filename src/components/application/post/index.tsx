@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const Post = ({ post }: Props) => {
-  const content = post.content.replace(/<[^>]*>?/gm, '').substring(0, 200);
+  const content = post.content.replace(/<[^>]*>?/gm, '').substring(0, 180);
 
   return (
     <Container>
