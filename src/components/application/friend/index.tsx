@@ -1,9 +1,9 @@
-import { User } from '../../../common/types/user';
+import { GenericUser } from '../../../common/types/user';
 import { Button } from '../../common';
 import { Container, Image, InfoContainer, Name } from './index.styled';
 
 interface Props {
-  user: User;
+  user: GenericUser;
 }
 
 export const Friend = ({ user }: Props) => {
