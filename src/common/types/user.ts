@@ -1,8 +1,14 @@
 import { SimplePost } from './posts';
 
+export interface ApiGenericUser {
+  id: number;
+  username: string;
+}
+
 export interface GenericUser {
   id: number;
   username: string;
+  avatar_url: string;
 }
 
 export interface User extends GenericUser {
