@@ -15,7 +15,9 @@ export const useVisitedUser = (id: number) => {
       .then((data) => {
         setUser({
           ...data,
-          friends: data.friends.filter((friend) => friend.id !== loggedUser.id),
+          friends: data.friends.filter((friend) =>
+            loggedUser.friendIds.includes(friend.id)
+          ),
         });
       })
       .finally(() => {
