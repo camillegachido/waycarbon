@@ -58,4 +58,31 @@ describe('Post page', () => {
       `${addedComment} [data-testid=${componentsTestId.comment.container}]`
     ).should('contains.text', typedTextReply);
   });
+  it('should show modal when clicking on author comment', () => {
+    cy.visit('/');
+    cy.get(`[data-testid=${componentsTestId.loader.container}]`).should(
+      'exist'
+    );
+    cy.get(`[data-testid=${componentsTestId.loader.container}]`).should(
+      'not.exist'
+    );
+
+    cy.get(`[data-testid=${componentsTestId.comment.container}]`).should(
+      'have.length',
+      5
+    );
+
+    cy.get(`[data-testid=${componentsTestId.comment.author}]:first`).click();
+
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.loader}]`
+    ).should('exist');
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs}]`
+    ).should('not.exist');
+
+    cy.get(
+      `[data-testid=${componentsTestId.modal.container}] [data-testid=${componentsTestId.tabs}]`
+    ).should('exist');
+  });
 });
