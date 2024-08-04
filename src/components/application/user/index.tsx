@@ -12,10 +12,16 @@ interface Props {
 export const User = ({ user, time, onClick }: Props) => {
   const isClickable = !!onClick;
 
-  const url = user.avatar_url !== '' ? user.avatar_url : LoadAvatar;
   return (
     <Container isClickable={isClickable} onClick={onClick}>
-      <Image src={url} alt={user.username + ' avatar'} />
+      <Image
+        src={user.avatar_url}
+        alt={user.username + ' avatar'}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src = LoadAvatar;
+        }}
+      />
       <div>
         <Name>{user.username}</Name>
         <Date>{formatDate(time)}</Date>
