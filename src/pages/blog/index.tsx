@@ -5,12 +5,14 @@ import {
   BlogComments,
   BlogContent,
   BlogHeader,
+  BlogUserModal,
 } from './components';
 import { usePost } from './hook';
 import { CenterLoader } from './index.styled';
 
 export const BlogPage = () => {
-  const { isLoading, post } = usePost();
+  const { isLoading, post, selectedUser, onAuthorClick, onDeselectUser } =
+    usePost();
 
   if (isLoading) {
     return (
@@ -26,9 +28,15 @@ export const BlogPage = () => {
     <article>
       <BlogBanner />
       <Layout>
-        <BlogHeader post={post} />
+        <BlogHeader post={post} onAuthorClick={onAuthorClick} />
         <BlogContent content={post.content} />
-        <BlogComments initialComments={post.comments} />
+        <BlogComments
+          initialComments={post.comments}
+          onAuthorClick={onAuthorClick}
+        />
+        {selectedUser && (
+          <BlogUserModal visitedUser={selectedUser} onClose={onDeselectUser} />
+        )}
       </Layout>
     </article>
   );
