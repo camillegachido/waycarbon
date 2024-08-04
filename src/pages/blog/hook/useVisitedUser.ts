@@ -25,5 +25,7 @@ export const useVisitedUser = (id: number) => {
       });
   }, []);
 
-  return { isLoading, user };
+  const isFollowed = loggedUser.friendIds.includes(id);
+
+  return { isLoading, user, isFollowed };
 };
