@@ -19,7 +19,12 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
       onClick={onClose}
       data-testid={componentsTestId.modal.background}
     >
-      <Container onClick={handleContainerClick}>{children}</Container>
+      <Container
+        onClick={handleContainerClick}
+        data-testid={componentsTestId.modal.container}
+      >
+        {children}
+      </Container>
     </Background>
   );
 };

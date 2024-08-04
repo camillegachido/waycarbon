@@ -21,7 +21,10 @@ export const Comment = ({ onSave, comment, onClick }: Props) => {
 
   return (
     <Container data-testid={componentsTestId.comment.container}>
-      <Author onClick={() => handleAuthorClick(comment.author)}>
+      <Author
+        onClick={() => handleAuthorClick(comment.author)}
+        data-testid={componentsTestId.comment.author}
+      >
         {comment.author.username} - {comment.timestamp}
       </Author>
       <Text>{comment.content}</Text>
