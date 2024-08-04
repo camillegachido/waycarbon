@@ -10,7 +10,7 @@ export const Friend = ({ user }: Props) => {
   return (
     <Container>
       <InfoContainer>
-        <Image src="" alt={user.username + ' avatar'} />
+        <Image src={user.avatar_url} alt={user.username + ' avatar'} />
         <Name>{user.username}</Name>
       </InfoContainer>
       <Button variant="outlined" small>
