@@ -7,7 +7,6 @@ import { updatePostComments } from '../../../common/utils';
 export const useComments = (initialComments: NestedComment[]) => {
   const { user } = useContext(AuthContext);
   const [comments, setComments] = useState<NestedComment[]>(initialComments);
-  const [isLoading, setIsLoading] = useState(false);
 
   const addComment = (parent: number, comment: string) => {
     const newComment: ApiComment = {
@@ -18,17 +17,11 @@ export const useComments = (initialComments: NestedComment[]) => {
       respondsTo: { id: parent },
     };
 
-    setIsLoading(true);
-    new PostCommentUseCase()
-      .execute(newComment)
-      .then((data) => {
-        const newComments = updatePostComments(comments, parent, data);
-        setComments(newComments);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    return new PostCommentUseCase().execute(newComment).then((data) => {
+      const newComments = updatePostComments(comments, parent, data);
+      setComments(newComments);
+    });
   };
 
-  return { isLoading, comments, addComment };
+  return { comments, addComment };
 };

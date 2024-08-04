@@ -7,7 +7,7 @@ interface Props {
   initialComments: NestedComment[];
 }
 export const BlogComments = ({ initialComments }: Props) => {
-  const { isLoading, comments, addComment } = useComments(initialComments);
+  const { comments, addComment } = useComments(initialComments);
 
   return (
     <>
